@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dados e Banco de Dados Local (Manter o repositório leve)
+data/
+*.duckdb
+*.db
+*.csv

@@ -1,0 +1,17 @@
+# Manipulação e Banco de Dados
+duckdb
+polars
+pandas
+pyarrow
+
+# Análise de Dados e ML/Estatística
+scikit-learn
+statsmodels
+mlxtend          # Para Market Basket Analysis / Apriori (Recomendação)
+prophet          # Para Previsão de Demanda (Séries Temporais)
+
+# Visualização e Utilitários
+matplotlib
+seaborn
+jupyterlab
+python-dotenv
