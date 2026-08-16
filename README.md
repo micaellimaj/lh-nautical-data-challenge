@@ -55,6 +55,45 @@ A arquitetura do projeto foi dividida em três camadas analíticas (Arquitetura 
 * **Arquitetura Star Schema na Camada Gold**: A separação em Tabela Fato (eventos de venda) e Tabelas Dimensão (atributos contextuais) otimiza o modelo tabular no Power BI, reduz a redundância de dados e melhora drasticamente o desempenho de filtros e DAX.
 * **Modelagem Explícita de Dimensão Calendário (`gold_dim_calendario.csv`)**: Permite a realização de análises temporais corretas (como o cálculo da Média Corrigida no POS considerando dias sem vendas) e evita a dependência de inteligência de tempo automática.
 
+
+## Interface & Dashboard Analítico (Power BI):
+
+O relatório foi desenvolvido no Power BI aplicando conceitos avançados de **Data Storytelling e UI/UX**, com paleta de cores corporativa náutica e navegação fluida entre páginas para atender diferentes níveis executivos e operacionais.
+
+### Capa — Centro de Comando LH Nautical
+Tela de entrada e boas-vindas da aplicação, projetada para direcionar o usuário à experiência imersiva de navegação pelos dados.
+
+<div align="center">
+  <img src="reports/Telas/dashboard_capa.png" alt="Capa - Centro de Comando" width="60%" />
+</div>
+
+---
+
+### Página 1 — Performance Comercial & POS (Canal Físico)
+Foco em monitoramento executivo de faturamento, margem global, comportamento de vendas por dia da semana (comparativo de média simples vs. corrigida) e distribuição por canal de venda (E-commerce vs. POS).
+
+<div align="center">
+  <img src="reports/Telas/dashboard_pagina1.png" alt="Página 1 - Performance Comercial" width="60%" />
+</div>
+
+---
+
+### Página 2 — Clientes de Elite & Análise Pareto (Curva ABC)
+Voltada para inteligência comercial e gestão de estoque. Apresenta o ranking dos Clientes de Elite (compradores recorrentes de categorias-chave), identificação dos produtos Classe C (menor margem e giro) e a distribuição da Curva ABC de Lucro.
+
+<div align="center">
+  <img src="reports/Telas/dashboard_pagina2.png" alt="Página 2 - Clientes de Elite e Pareto" width="60%" />
+</div>
+
+---
+
+### Página 3 — Data Health, Machine Learning & Recomendação
+Visão técnica e preditiva. Integra o monitor de qualidade de dados (anomalias e cadastros inconsistentes), métricas de erro de previsão de demanda (MAE) e o motor de recomendação por Filtragem Colaborativa (*Cross-Selling*).
+
+<div align="center">
+  <img src="reports/Telas/dashboard_pagina3.png" alt="Página 3 - ML e Governança" width="60%" />
+</div>
+
 ## Insights Extraídos do Dashboard:
 
 * **Faturamento e Margem Global**: Faturamento acumulado consolidado em R$ 122,57 Bilhões com margem de lucro média de 42,61%.
@@ -62,6 +101,32 @@ A arquitetura do projeto foi dividida em três camadas analíticas (Arquitetura 
 * **Análise do Estoque Retido (Classe C)**: Nenhum produto atua com margem negativa, porém foram mapeados 194 produtos na Classe C da Curva ABC, evidenciando capital de giro parado no armazém com oportunidade de otimização de compra.
 * **Canais de Venda e Cancelamentos**: O E-commerce representa 70,66% do volume de intenção de compra, mas concentra a maior taxa do percentual global de 9,77% em cancelamentos, exigindo atenção na jornada do checkout digital.
 
+## Relatório e Power BI (Links Externos):
+
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <b>
+          <a href="https://gamma.app/docs/Relatorio-Varejo-Nautico-jsc1l5vnl9akg0m">Relatório - Varejo Náutico (CLIQUE)  </a>
+        </b>
+      </td>
+      <td>
+        <b>
+          <a href="https://app.powerbi.com/view?r=eyJrIjoiYTc0MGQ0ZWItYjk5My00ZDMzLWEwZGMtNTg4YjM1M2M2YTEyIiwidCI6IjUxZGQ3ZDM4LTYwNzctNDgzNy1hYTE0LWFlNDNmZThiM2ViMCJ9"> Painel - Power BI (CLIQUE) </a>
+        </b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="readme/relatorio.jpeg" width="250px" height="250px">
+      </td>
+      <td>
+        <img src="readme/powerBI.jpeg" width="250px" height="250px">
+      </td>
+    </tr>
+  </table>
+</div>
 
 ## Schema do Banco e Modelo de Dados:
 
@@ -245,6 +310,24 @@ Tabela utilitária sem colunas físicas, destinada à centralização das métri
    * Conecte a fonte de dados aos arquivos CSV presentes na pasta `data/gold/`.
    * Utilize os arquivos da camada **Gold** para construir ou atualizar o dashboard de BI.
 
+## Governança de Projetos & Boas Práticas de Engenharia:
+
+Para além do desenvolvimento técnico e das análises analíticas, este repositório segue rigorosos padrões de **governança de código, versionamento e gestão de tarefas**:
+
+###  Gestão de Demandas via GitHub Issues
+O projeto foi totalmente focado em metodologias ágeis. Cada etapa do ciclo de vida dos dados (desde o setup inicial, modelagem DuckDB, análises de IA, construção de dashboards até a documentação) foi rastreada e encerrada por meio de **GitHub Issues dedicadas**.
+
+<div align="center">
+  <img src="readme/issues_closed.png" alt="GitHub Issues Fechadas" width="85%" />
+  <p><i>Painel de Issues concluídas com mapeamento de requisitos, entregas e resoluções registradas.</i></p>
+</div>
+
+
+###  Padrões de Versionamento (Git Flow & Conventional Commits)
+
+* **Estratégia de Branching (`feature/*`):** Desenvolvimento isolado por funcionalidade através de branches temáticas (ex.: `feature/gold-layer`, `feature/analytics-forecast-recommendation`, `feature/docs-readme`), garantindo que a branch principal (`main`) permaneça sempre estável e pronta para produção.
+* **Padronização de Commits:** Utilização do padrão **Conventional Commits** (`feat:`, `docs:`, `fix:`, `refactor:`) para garantir rastreabilidade clara das alterações e histórico de mudanças semântico.
+
 ## Estrutura do Repositório:
 
 ```
@@ -259,8 +342,8 @@ Tabela utilitária sem colunas físicas, destinada à centralização das métri
 │   │   └── lh_nautical_csv/          # 24 tabelas operacionais em formato CSV
 │   └── silver/                       # Camada Silver - Banco OLAP relacional unificado
 │       └── lh_nautical.duckdb        # Arquivo de banco de dados DuckDB
+├── readme/                           # Recursos visuais usada na documentação do readme
 ├── reports/                          # Relatórios, artefatos e capturas do dashboard
-│   └── dashboard/                    # Imagens do modelo de dados e visualizações BI
 ├── sql/                              # Scripts SQL para EDA, validação e modelagem
 │   ├── 01_eda_orders.sql             # Análise exploratória da tabela de pedidos
 │   ├── 02_q3_validation.sql          # Script de validação das questões de negócio
@@ -288,7 +371,13 @@ Tabela utilitária sem colunas físicas, destinada à centralização das métri
 
 ```
 
-## Conclusão:
+## Conclusão
 
 O projeto entregou uma solução completa de ponta a ponta, saindo de dados transacionais brutos desestruturados até a consolidação de um Data Mart modelado em Star Schema. A infraestrutura em Python e DuckDB garantiu eficiência de processamento e reprodutibilidade, fornecendo à diretoria da LH Nautical um ambiente de BI confiável, governado e auditável para suporte às tomadas de decisão estratégicas.
 
+<br />
+<p align="center">
+  <kbd>
+    <b> 🚢 Com esta estrutura, a LH Nautical consolida a inteligência de dados como leme para sua expansão no varejo náutico. Agradeço a atenção e o tempo dedicado à leitura e análise deste projeto — bons ventos e até logo! 🚢 </b>
+  </kbd>
+</p>
