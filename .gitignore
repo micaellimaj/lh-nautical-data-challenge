@@ -217,8 +217,19 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Dados e Banco de Dados Local (Manter o repositório leve)
-data/
+# --- Dados e Banco de Dados Local ---
+# Ignora arquivos de banco de dados e temporários
 *.duckdb
 *.db
-*.csv
+*.sqlite3
+
+# Preserva a pasta data/raw/ com os CSVs originais para o recrutador executar o projeto
+!data/raw/
+!data/raw/**
+
+# Ignora os dados processados gerados pelo pipeline (Silver e Gold)
+data/silver/*
+!data/silver/.gitkeep
+
+data/gold/*
+!data/gold/.gitkeep
